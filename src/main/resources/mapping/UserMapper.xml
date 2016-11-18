@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hym.ssm.dao.UserDao">
+
+    <resultMap id="UserBaseMap" type="com.hym.ssm.model.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="pwd_salt" property="pwdSalt" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="modify_time" property="modifyTime" jdbcType="DATE"/>
+        <result column="is_delete" property="isDelete" jdbcType="SMALLINT"></result>
+    </resultMap>
+
+    <select id="selectUserById" parameterType="java.lang.Long" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+        WHERE id = #{userId}
+    </select>
+
+    <select id="selectUserByPhoneOrEmail" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+        WHERE user_email = #{emailOrPhone} OR user_phone = #{emailOrPhone}
+        AND user_state = #{state}
+    </select>
+
+    <select id="selectAllUser" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+    </select>
+
+    <select id="selectUserByName" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+        WHERE user_name = #{userName}
+    </select>
+
+    <insert id="addUser" parameterType="com.hym.ssm.model.User" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+        INSERT INTO t_user(user_name, user_phone, user_email, user_pwd, pwd_salt, create_time, modify_time, is_delete) VALUES (
+        #{userName},#{userPhone},#{userEmail},#{userPwd},#{pwdSalt},#{createTime},#{modifyTime},#{isDelete})
+        ]]>
+
+    </insert>
+
+    <delete id="deleteUserById" parameterType="java.lang.Long">
+        DELETE FROM t_user WHERE id = #{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="com.hym.ssm.model.User">
+        UPDATE t_user SET user_pwd=#{userPwd},user_email=#{userEmail},user_phone=#{userPhone}
+    </update>
+
+</mapper>

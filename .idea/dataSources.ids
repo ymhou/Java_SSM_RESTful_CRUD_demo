@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - tomcat@localhost" uuid="17a2079d-be4d-41a1-b267-035b4df9159b">
+    <database-info product="MySQL" version="5.7.15-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="tomcat"/>
+      <table id="2" parent="1" name="employee"/>
+      <table id="3" parent="1" name="t_user">
+        <comment>用户登录表</comment>
+      </table>
+      <table id="4" parent="1" name="user_role"/>
+      <table id="5" parent="1" name="users"/>
+      <routine id="6" parent="1" name="proc_employee_count">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <column id="7" parent="2" name="empid">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="8" parent="2" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="9" parent="2" name="gender">
+        <mandatory>1</mandatory>
+        <data-type>varchar(2)</data-type>
+      </column>
+      <column id="10" parent="2" name="birthday">
+        <data-type>date</data-type>
+      </column>
+      <key id="11" parent="2" name="PRIMARY">
+        <columns>empid</columns>
+        <primary>1</primary>
+      </key>
+      <column id="12" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="13" parent="3" name="user_name">
+        <comment>用户名</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="14" parent="3" name="user_phone">
+        <comment>手机号</comment>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="15" parent="3" name="user_email">
+        <comment>邮箱地址</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="16" parent="3" name="user_pwd">
+        <comment>加盐后用户密码</comment>
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="17" parent="3" name="pwd_salt">
+        <comment>MD5盐</comment>
+        <data-type>varchar(6)</data-type>
+      </column>
+      <column id="18" parent="3" name="create_time">
+        <comment>创建时间</comment>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="19" parent="3" name="modify_time">
+        <comment>最后修改时间</comment>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="20" parent="3" name="is_delete">
+        <comment>是否删除，0-未删除；1-已删除</comment>
+        <data-type>tinyint(4)</data-type>
+      </column>
+      <key id="21" parent="3" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="22" parent="4" name="user_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)</data-type>
+      </column>
+      <column id="23" parent="4" name="role_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)</data-type>
+      </column>
+      <key id="24" parent="4" name="PRIMARY">
+        <columns>user_name
+role_name</columns>
+        <primary>1</primary>
+      </key>
+      <column id="25" parent="5" name="username">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)</data-type>
+      </column>
+      <column id="26" parent="5" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(35)</data-type>
+      </column>
+      <key id="27" parent="5" name="PRIMARY">
+        <columns>username</columns>
+        <primary>1</primary>
+      </key>
+      <argument id="28" parent="6" name="n">
+        <direction>OUT</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+    </database-model>
+  </data-source>
+</component>
